@@ -1,21 +1,17 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync'),
-    autoprefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
-    jshint = require('gulp-jshint'),
     header  = require('gulp-header'),
     rename = require('gulp-rename'),
     cssnano = require('gulp-cssnano'),
     package = require('./package.json'),
     filter = require('gulp-filter'),
     plumber = require('gulp-plumber'),
-    pug = require('gulp-pug'),
-    mkdirp = require('mkdirp');
+    pug = require('gulp-pug');
 
 var banner = [
   '/*!\n' +
-  // ' * <%= package.name %>\n' +
   ' * <%= package.title %>\n' +
   ' * <%= package.url %>\n' +
   ' * @author <%= package.author %>\n' +
@@ -32,14 +28,13 @@ var paths = {
 };
 
 gulp.task('clean', function () {
-
+  //-----------------
 });
 
 gulp.task('sass', function () {
   return gulp.src(paths.src + '/sass/style.sass')
     .pipe(plumber())
     .pipe(sass({ errLogToConsole: true }))
-    .pipe(autoprefixer('last 4 version'))
     .pipe(cssnano())
     .pipe(rename({ suffix: '.min' }))
     .pipe(header(banner, { package: package }))
@@ -50,8 +45,6 @@ gulp.task('sass', function () {
 gulp.task('scripts',function(){
   gulp.src(paths.src + '/scripts/scripts.js')
     .pipe(plumber())
-    // .pipe(jshint('.jshintrc'))
-    // .pipe(jshint.reporter('default'))
     .pipe(uglify())
     .pipe(header(banner, { package: package }))
     .pipe(rename({ suffix: '.min' }))
