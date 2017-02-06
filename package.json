@@ -1,13 +1,13 @@
 {
-  "name": "Repobase",
-  "title": "Repobaase",
-  "author": "Algorit",
-  "url": "Repobaselink",
+  "name": "Name",
+  "title": "Title",
+  "author": "Author",
+  "url": "Url",
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "Repobasegit"
+    "url": "Url"
   },
   "dependencies": {
     "jquery": "^1.11.0",
