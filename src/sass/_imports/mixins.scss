@@ -1,0 +1,17 @@
+@mixin query-md {
+  @media (max-width: 1200px) {
+    @content
+  }
+}
+
+@mixin query-sm {
+  @media (max-width: 992px) {
+    @content
+  }
+}
+
+@mixin query-xs {
+  @media (max-width: 767px) {
+    @content
+  }
+}

@@ -19,7 +19,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('sass', () => {
-  return gulp.src(paths.src + '/sass/style.sass')
+  return gulp.src(paths.src + '/sass/style.scss')
     .pipe(plumber())
     .pipe(sass({ errLogToConsole: true }))
     .pipe(cssnano())
@@ -64,7 +64,7 @@ gulp.task('browser-sync', () => {
 gulp.task('default', ['clean', 'sass', 'images', 'scripts', 'views']);
 
 gulp.task('watch', ['clean', 'sass', 'images', 'scripts', 'views', 'browser-sync'], () => {
-  gulp.watch(paths.src + '/sass/**/*.sass', ['sass']);
+  gulp.watch(paths.src + '/sass/**/*.scss', ['sass']);
   gulp.watch(paths.src + '/scripts/*.js', ['scripts']);
   gulp.watch(paths.src + '/views/**/*.pug', ['views']);
   gulp.watch(paths.src + '/views/**/*.md', ['views']);
