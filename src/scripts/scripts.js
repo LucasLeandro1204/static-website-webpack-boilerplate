@@ -1,5 +1,4 @@
-$("document").ready(function () {
-
+$('document').ready(function () {
   $('img[data-src]').each(function () {
     var img = $(this);
 
