@@ -3,7 +3,6 @@ const sass        = require('gulp-sass');
 const browserSync = require('browser-sync');
 const uglify      = require('gulp-uglify');
 const rename      = require('gulp-rename');
-const cssnano     = require('gulp-cssnano');
 const filter      = require('gulp-filter');
 const plumber     = require('gulp-plumber');
 const pug         = require('gulp-pug');
@@ -21,8 +20,7 @@ gulp.task('clean', () => {
 gulp.task('sass', () => {
   return gulp.src(paths.src + '/sass/style.scss')
     .pipe(plumber())
-    .pipe(sass({ errLogToConsole: true }))
-    .pipe(cssnano())
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(paths.build + '/styles'))
     .pipe(browserSync.reload({ stream: true }));
