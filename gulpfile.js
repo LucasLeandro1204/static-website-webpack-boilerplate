@@ -1,11 +1,12 @@
-const gulp        = require('gulp');
-const sass        = require('gulp-sass');
 const browserSync = require('browser-sync');
-const uglify      = require('gulp-uglify');
-const rename      = require('gulp-rename');
+const gulp        = require('gulp');
+const browserify  = require('gulp-browserify');
 const filter      = require('gulp-filter');
 const plumber     = require('gulp-plumber');
 const pug         = require('gulp-pug');
+const rename      = require('gulp-rename');
+const sass        = require('gulp-sass');
+const uglify      = require('gulp-uglify');
 
 const paths = {
   src: './src',
@@ -29,6 +30,9 @@ gulp.task('sass', () => {
 gulp.task('scripts', () => {
   gulp.src(paths.src + '/scripts/scripts.js')
     .pipe(plumber())
+    .pipe(browserify({
+      insertGlobals : true
+    }))
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(paths.build + '/scripts'))
