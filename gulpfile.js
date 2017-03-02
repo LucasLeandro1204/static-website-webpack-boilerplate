@@ -19,7 +19,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('sass', () => {
-  return gulp.src(paths.src + '/sass/style.scss')
+  gulp.src(paths.src + '/sass/style.scss')
     .pipe(plumber())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(rename({ suffix: '.min' }))
