@@ -19,8 +19,11 @@ gulp.task('clean', () => {
 });
 
 gulp.task('sass', () => {
-  gulp.src(paths.src + '/sass/style.scss')
+  gulp.src(paths.src + '/sass/*.scss')
     .pipe(plumber())
+    .pipe(filter(file => (
+      !/\/_/.test(file.path) && !/^_/.test(file.relative)
+    )))
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(paths.build + '/styles'))
@@ -28,8 +31,11 @@ gulp.task('sass', () => {
 });
 
 gulp.task('scripts', () => {
-  gulp.src(paths.src + '/scripts/scripts.js')
+  gulp.src(paths.src + '/scripts/*.js')
     .pipe(plumber())
+    .pipe(filter(file => (
+      !/\/_/.test(file.path) && !/^_/.test(file.relative)
+    )))
     .pipe(browserify({
       insertGlobals : true
     }))
